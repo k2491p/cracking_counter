@@ -11,6 +11,6 @@ class RegisterViewModel {
   }
 
   UpdateList() {
-    throw Exception();
+    _crackingList = _service.GetCrackingCounters();
   }
 }
