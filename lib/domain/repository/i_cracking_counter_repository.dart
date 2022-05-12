@@ -1,5 +1,5 @@
-import 'package:cracking_counter/application/dto/cracking_counters.dart';
+import 'package:cracking_counter/domain/entity/cracking_counter_entity.dart';
 
 abstract class ICrackingCounterRepository {
-  CrackingCounters getAll();
+  List<CrackingCounterEntity> getAll();
 }

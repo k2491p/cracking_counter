@@ -2,9 +2,10 @@
 // in cracking_counter/test/service/cracking_counter_service_test.dart.
 // Do not manually edit this file.
 
-import 'package:cracking_counter/application/dto/cracking_counters.dart' as _i2;
-import 'package:cracking_counter/domain/repository/i_cracking_counter_repository.dart'
+import 'package:cracking_counter/domain/entity/cracking_counter_entity.dart'
     as _i3;
+import 'package:cracking_counter/domain/repository/i_cracking_counter_repository.dart'
+    as _i2;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -17,20 +18,18 @@ import 'package:mockito/mockito.dart' as _i1;
 // ignore_for_file: unnecessary_parenthesis
 // ignore_for_file: camel_case_types
 
-class _FakeCrackingCounters_0 extends _i1.Fake implements _i2.CrackingCounters {
-}
-
 /// A class which mocks [ICrackingCounterRepository].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockICrackingCounterRepository extends _i1.Mock
-    implements _i3.ICrackingCounterRepository {
+    implements _i2.ICrackingCounterRepository {
   MockICrackingCounterRepository() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i2.CrackingCounters getAll() =>
+  List<_i3.CrackingCounterEntity> getAll() =>
       (super.noSuchMethod(Invocation.method(#getAll, []),
-          returnValue: _FakeCrackingCounters_0()) as _i2.CrackingCounters);
+              returnValue: <_i3.CrackingCounterEntity>[])
+          as List<_i3.CrackingCounterEntity>);
 }

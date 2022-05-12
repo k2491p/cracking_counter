@@ -17,7 +17,7 @@ void main() {
     var entity1 = CrackingCounterEntity(uuid.v4(), userId, uuid.v4(), 10, 1);
     var entity2 = CrackingCounterEntity(uuid.v4(), userId, uuid.v4(), 15, 2);
     var crackingCounters = CrackingCounters([entity1, entity2]);
-    when(repository.getAll()).thenReturn(crackingCounters);
+    when(repository.getAll()).thenReturn([entity1, entity2]);
 
     var service = CrackingCounterService(repository);
 
