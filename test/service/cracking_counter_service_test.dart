@@ -7,6 +7,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:uuid/uuid.dart';
 import 'cracking_counter_service_test.mocks.dart';
+import 'package:flutter/foundation.dart';
 
 @GenerateMocks([ICrackingCounterRepository])
 void main() {
@@ -21,6 +22,6 @@ void main() {
 
     var service = CrackingCounterService(repository);
 
-    expect(service.getCrackingCounters(), crackingCounters);
+    expect(service.getCrackingCounters().value, crackingCounters.value);
   });
 }
