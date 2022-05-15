@@ -6,7 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:uuid/uuid.dart';
-import 'cracking_counter_service_test.mocks.dart';
+import 'register_view_model_test.mocks.dart';
 
 @GenerateMocks([CrackingCounterService])
 void main() {
