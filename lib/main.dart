@@ -1,7 +1,15 @@
+import 'package:cracking_counter/application/shared.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 void main() {
+  initialize();
   runApp(const MyApp());
+}
+
+Future<void> initialize() async {
+  const storage = FlutterSecureStorage();
+  Shared.userId = await storage.read(key: 'userId');
 }
 
 class MyApp extends StatelessWidget {

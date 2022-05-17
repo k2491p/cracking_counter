@@ -28,8 +28,8 @@ class MockICrackingCounterRepository extends _i1.Mock
   }
 
   @override
-  List<_i3.CrackingCounterEntity> getAll() =>
-      (super.noSuchMethod(Invocation.method(#getAll, []),
+  List<_i3.CrackingCounterEntity> getAll(String? userId) =>
+      (super.noSuchMethod(Invocation.method(#getAll, [userId]),
               returnValue: <_i3.CrackingCounterEntity>[])
           as List<_i3.CrackingCounterEntity>);
 }
