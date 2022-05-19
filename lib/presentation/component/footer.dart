@@ -42,12 +42,6 @@ class _Footer extends State<Footer> {
         color: Colors.black87,
       ),
       label: _footerItemNames[index]
-      //  title: Text(
-      //    _footerItemNames[index],
-      //    style: TextStyle(
-      //      color: Colors.black87,
-      //    ),
-      //  )
     );
   }
 
@@ -59,12 +53,6 @@ class _Footer extends State<Footer> {
         color: Colors.black26,
       ),
         label: _footerItemNames[index]
-      //  title: Text(
-      //    _footerItemNames[index],
-      //    style: TextStyle(
-      //      color: Colors.black26,
-      //    ),
-      //  )
     );
   }
 
@@ -80,7 +68,7 @@ class _Footer extends State<Footer> {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed, // これを書かないと3つまでしか表示されない
+      type: BottomNavigationBarType.fixed,
       items: _bottomNavigationBarItems,
       currentIndex: _selectedIndex,
       onTap: _onItemTapped,
