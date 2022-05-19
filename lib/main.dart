@@ -1,4 +1,5 @@
 import 'package:cracking_counter/application/shared.dart';
+import 'package:cracking_counter/presentation/component/footer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
@@ -113,6 +114,7 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
+      bottomNavigationBar: Footer(),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
