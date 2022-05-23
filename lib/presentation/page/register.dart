@@ -28,8 +28,8 @@ class _Register extends State<Register> {
         title: Text(widget.title),
       ),
       body: Container(
-        margin: EdgeInsets.all(16.0),
-        // height: 80,
+        margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 48.0),
+        height: 60,
         child: Row(
           children: [
             Text('首', style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
