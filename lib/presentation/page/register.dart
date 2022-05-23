@@ -27,16 +27,42 @@ class _Register extends State<Register> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'registration page:',
+      body: Container(
+        margin: EdgeInsets.all(16.0),
+        // height: 80,
+        child: Row(
+          children: [
+            Text('首', style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold)),
+            const SizedBox(width: 48),
+            Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text('通算'),
+                  Text('10'),
+                ]
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            const SizedBox(width: 24),
+            Expanded(
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text('今日'),
+                    Text('3'),
+                  ]
+              ),
+            ),
+            ElevatedButton(
+              child: const Text('ポキッ'),
+              style: ElevatedButton.styleFrom(
+                primary: Colors.blue,
+                onPrimary: Colors.black,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              onPressed: () {},
             ),
           ],
         ),
