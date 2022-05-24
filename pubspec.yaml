@@ -36,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   uuid: 3.0.6
   flutter_secure_storage:
+  sqflite:
+  path:
   
 dev_dependencies:
   flutter_test:
