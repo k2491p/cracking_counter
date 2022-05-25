@@ -76,6 +76,43 @@ class DbHelper {
             FOREIGN KEY (body_part_id) REFERENCES body_part(id),
           )
         ''');
+
+        await db.execute('''
+          CREATE VIEW cracking_view AS
+            SELECT
+              s1.user_id,
+              s1.body_part_id,
+              s1.
+            FROM
+              (
+                SELECT
+                  user_id,
+                  body_part_id,
+                  sum(count) AS count_total
+                FROM
+                  cracking_history
+                GROUP BY
+                  user_id,
+                  body_part_id
+              ) s1
+            LEFT JOIN 
+              (
+                SELECT
+                  user_id,
+                  body_part_id,
+                  sum(count) AS count_today
+                FROM
+                  cracking_history
+                WHERE
+                  date(register_date) = date(CURRENT_TIMESTAMP)
+                GROUP BY
+                  user_id,
+                  body_part_id
+              ) s2
+            ON 
+              s1.user_id = s2.user_id
+              AND s1.body_part_id = s2.body_part_id
+        ''');
       },
     );
 
