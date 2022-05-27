@@ -2,8 +2,10 @@
 // in cracking_counter/test/service/cracking_counter_service_test.dart.
 // Do not manually edit this file.
 
+import 'dart:async' as _i3;
+
 import 'package:cracking_counter/domain/entity/cracking_counter_entity.dart'
-    as _i3;
+    as _i4;
 import 'package:cracking_counter/domain/repository/i_cracking_counter_repository.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -28,8 +30,9 @@ class MockICrackingCounterRepository extends _i1.Mock
   }
 
   @override
-  List<_i3.CrackingCounterEntity> getAll(String? userId) =>
+  _i3.Future<List<_i4.CrackingCounterEntity>> getAll(String? userId) =>
       (super.noSuchMethod(Invocation.method(#getAll, [userId]),
-              returnValue: <_i3.CrackingCounterEntity>[])
-          as List<_i3.CrackingCounterEntity>);
+              returnValue: Future<List<_i4.CrackingCounterEntity>>.value(
+                  <_i4.CrackingCounterEntity>[]))
+          as _i3.Future<List<_i4.CrackingCounterEntity>>);
 }

@@ -7,10 +7,10 @@ class RegisterViewModel {
   CrackingCounters get crackingList => _crackingList;
 
   RegisterViewModel(this._service) {
-    UpdateList();
+    updateList();
   }
 
-  UpdateList() {
+  updateList() {
     _crackingList = _service.getCrackingCounters();
   }
 }

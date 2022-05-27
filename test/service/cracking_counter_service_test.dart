@@ -12,17 +12,18 @@ import 'cracking_counter_service_test.mocks.dart';
 @GenerateMocks([ICrackingCounterRepository])
 void main() {
   final repository = MockICrackingCounterRepository();
-  test("一覧取得", () {
+  test("一覧取得", () async {
     var uuid = const Uuid();
     var userId = uuid.v4();
     Shared.userId = userId;
     var entity1 = CrackingCounterEntity(userId, uuid.v4(), 10, 1);
     var entity2 = CrackingCounterEntity(userId, uuid.v4(), 15, 2);
     var crackingCounters = CrackingCounters([entity1, entity2]);
-    when(repository.getAll(userId)).thenReturn([entity1, entity2]);
+    when(repository.getAll(userId)).thenAnswer((_) async => [entity1, entity2]);
 
     var service = CrackingCounterService(repository);
+    var result = await service.getCrackingCounters();
 
-    expect(service.getCrackingCounters().value, crackingCounters.value);
+    expect(result.value, crackingCounters.value);
   });
 }

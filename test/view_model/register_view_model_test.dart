@@ -17,7 +17,7 @@ void main() {
     var entity1 = CrackingCounterEntity(userId, uuid.v4(), 10, 1);
     var entity2 = CrackingCounterEntity(userId, uuid.v4(), 15, 2);
     var crackingCounters = CrackingCounters([entity1, entity2]);
-    when(service.getCrackingCounters()).thenReturn(crackingCounters);
+    when(service.getCrackingCounters()).thenReturn(CrackingCounters([entity1, entity2]));
 
     var vm = RegisterViewModel(service);
 
