@@ -5,14 +5,14 @@ const _dbFile = 'cracking_counter.db';
 const _dbVersion = 1;
 
 class DbHelper {
-  late Database? _db;
+  static Database? db;
   late Transaction? _txn;
 
   Future<Database?> open() async {
     final databasesPath = await getDatabasesPath();
     final path = join(databasesPath, _dbFile);
 
-    _db = await openDatabase(
+    db = await openDatabase(
       path,
       version: _dbVersion,
       onCreate: (Database db, int version) async {
@@ -82,13 +82,14 @@ class DbHelper {
             SELECT
               s1.user_id,
               s1.body_part_id,
-              s1.
+              s2.today_count,
+              s1.total_count
             FROM
               (
                 SELECT
                   user_id,
                   body_part_id,
-                  sum(count) AS count_total
+                  sum(count) AS total_count
                 FROM
                   cracking_history
                 GROUP BY
@@ -100,7 +101,7 @@ class DbHelper {
                 SELECT
                   user_id,
                   body_part_id,
-                  sum(count) AS count_today
+                  sum(count) AS today_count
                 FROM
                   cracking_history
                 WHERE
@@ -116,16 +117,16 @@ class DbHelper {
       },
     );
 
-    return _db;
+    return db;
   }
 
   Future<void> dispose() async {
-    await _db?.close();
-    _db = null;
+    await db?.close();
+    db = null;
   }
 
   Future<T> transaction<T>(Future<T> Function() f) async {
-    return _db!.transaction<T>((txn) async {
+    return db!.transaction<T>((txn) async {
       _txn = txn;
       return await f();
     }).then((v) {
@@ -138,20 +139,20 @@ class DbHelper {
       String sql, [
         List<dynamic>? arguments,
       ]) async {
-    return await (_txn ?? _db)!.rawQuery(sql, arguments);
+    return await (_txn ?? db)!.rawQuery(sql, arguments);
   }
 
   Future<int> rawInsert(
       String sql, [
         List<dynamic>? arguments,
       ]) async {
-    return await (_txn ?? _db)!.rawInsert(sql, arguments);
+    return await (_txn ?? db)!.rawInsert(sql, arguments);
   }
 
   Future<int> rawDelete(
       String sql, [
         List<dynamic>? arguments,
       ]) async {
-    return await (_txn ?? _db)!.rawDelete(sql, arguments);
+    return await (_txn ?? db)!.rawDelete(sql, arguments);
   }
 }
