@@ -2,6 +2,8 @@
 // in cracking_counter/test/view_model/register_view_model_test.dart.
 // Do not manually edit this file.
 
+import 'dart:async' as _i4;
+
 import 'package:cracking_counter/application/dto/cracking_counters.dart' as _i2;
 import 'package:cracking_counter/application/service/cracking_counter_service.dart'
     as _i3;
@@ -30,7 +32,9 @@ class MockCrackingCounterService extends _i1.Mock
   }
 
   @override
-  _i2.CrackingCounters getCrackingCounters() =>
+  _i4.Future<_i2.CrackingCounters> getCrackingCounters() =>
       (super.noSuchMethod(Invocation.method(#getCrackingCounters, []),
-          returnValue: _FakeCrackingCounters_0()) as _i2.CrackingCounters);
+              returnValue:
+                  Future<_i2.CrackingCounters>.value(_FakeCrackingCounters_0()))
+          as _i4.Future<_i2.CrackingCounters>);
 }

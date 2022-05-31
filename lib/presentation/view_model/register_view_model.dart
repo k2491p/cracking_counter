@@ -6,11 +6,12 @@ class RegisterViewModel {
   late CrackingCounterService _service;
   CrackingCounters get crackingList => _crackingList;
 
-  RegisterViewModel(this._service) {
+  RegisterViewModel() : this.service(CrackingCounterService());
+  RegisterViewModel.service(this._service) {
     updateList();
   }
 
-  updateList() {
-    _crackingList = _service.getCrackingCounters();
+  updateList() async {
+    _crackingList = await _service.getCrackingCounters();
   }
 }

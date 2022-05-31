@@ -21,7 +21,7 @@ void main() {
     var crackingCounters = CrackingCounters([entity1, entity2]);
     when(repository.getAll(userId)).thenAnswer((_) async => [entity1, entity2]);
 
-    var service = CrackingCounterService(repository);
+    var service = CrackingCounterService.repository(repository);
     var result = await service.getCrackingCounters();
 
     expect(result.value, crackingCounters.value);

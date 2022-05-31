@@ -1,4 +1,5 @@
 import 'package:cracking_counter/application/shared.dart';
+import 'package:cracking_counter/infrastructure/sqlite/db_helper.dart';
 import 'package:cracking_counter/presentation/component/footer.dart';
 import 'package:cracking_counter/presentation/page/register.dart';
 import 'package:flutter/material.dart';
