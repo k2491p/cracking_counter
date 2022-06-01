@@ -3,17 +3,20 @@ import 'package:cracking_counter/infrastructure/sqlite/db_helper.dart';
 import 'package:cracking_counter/presentation/component/footer.dart';
 import 'package:cracking_counter/presentation/page/register.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 void main() {
   initialize();
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 Future<void> initialize() async {
   const storage = FlutterSecureStorage();
   Shared.userId = await storage.read(key: 'userId');
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -35,7 +38,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const Register(title: 'Flutter Demo Home Page'),
+      home: Register(title: 'Flutter Demo Home Page'),
     );
   }
 }

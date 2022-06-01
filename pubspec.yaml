@@ -38,6 +38,8 @@ dependencies:
   flutter_secure_storage:
   sqflite:
   path:
+  hooks_riverpod:
+  flutter_hooks:
   
 dev_dependencies:
   flutter_test:
