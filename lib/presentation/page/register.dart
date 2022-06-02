@@ -39,7 +39,7 @@ class Register extends HookConsumerWidget {
         //   ? null
         // :
         ListView.builder(
-          itemCount: vm.crackingList.value.length,
+          itemCount: vm.crackingList.length,
           itemBuilder: (BuildContext context, int index) {
             return Row(
               children: [

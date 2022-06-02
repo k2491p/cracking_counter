@@ -24,6 +24,6 @@ void main() {
     var service = CrackingCounterService.repository(repository);
     var result = await service.getCrackingCounters();
 
-    expect(result.value, crackingCounters.value);
+    expect(result, crackingCounters.value);
   });
 }

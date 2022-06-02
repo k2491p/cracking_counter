@@ -16,12 +16,12 @@ void main() {
     var userId = uuid.v4();
     var entity1 = CrackingCounterEntity(userId, uuid.v4(), 10, 1);
     var entity2 = CrackingCounterEntity(userId, uuid.v4(), 15, 2);
-    var crackingCounters = CrackingCounters([entity1, entity2]);
-    when(service.getCrackingCounters()).thenAnswer((_) async => CrackingCounters([entity1, entity2]));
+    var crackingList = [entity1, entity2];
+    when(service.getCrackingCounters()).thenAnswer((_) async => crackingList);
 
     var vm = RegisterViewModel.service(service);
     await vm.updateList();
 
-    expect(vm.crackingList, crackingCounters);
+    expect(vm.crackingList, crackingList);
   });
 }

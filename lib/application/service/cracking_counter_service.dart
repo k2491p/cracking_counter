@@ -9,8 +9,8 @@ class CrackingCounterService {
   CrackingCounterService() : this.repository(CrackingCounterSqlite());
   CrackingCounterService.repository(this._repository);
 
-  Future<CrackingCounters> getCrackingCounters() async {
+  Future<List<CrackingCounterEntity>> getCrackingCounters() async {
     List<CrackingCounterEntity> result = await _repository.getAll(Shared.userId ?? '');
-    return CrackingCounters(result);
+    return result;
   }
 }
