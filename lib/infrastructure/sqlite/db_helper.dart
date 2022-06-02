@@ -8,7 +8,7 @@ class DbHelper {
   static Database? db;
   late Transaction? _txn;
 
-  Future<Database?> open() async {
+  static Future<Database?> open() async {
     final databasesPath = await getDatabasesPath();
     final path = join(databasesPath, _dbFile);
 
@@ -34,17 +34,6 @@ class DbHelper {
         ''');
 
         await db.execute('''
-          CREATE TABLE cracking_history (
-            id TEXT NOT NULL,
-            user_id TEXT NOT NULL,
-            body_part_id TEXT NOT NULL,
-            count INTEGER NOT NULL,
-            register_date TEXT NOT NULL,
-            PRIMARY KEY (id)
-          )
-        ''');
-
-        await db.execute('''
           CREATE TABLE body_part (
             id TEXT NOT NULL,
             name TEXT NOT NULL,
@@ -60,7 +49,7 @@ class DbHelper {
             name TEXT NOT NULL,
             PRIMARY KEY (id),
             FOREIGN KEY (ancestor_body_part_id) REFERENCES body_part(id),
-            FOREIGN KEY (descendent_body_part_id) REFERENCES body_part(id),
+            FOREIGN KEY (descendent_body_part_id) REFERENCES body_part(id)
           )
         ''');
 
@@ -73,7 +62,7 @@ class DbHelper {
             register_date TEXT NOT NULL,
             PRIMARY KEY (id),
             FOREIGN KEY (user_id) REFERENCES user(id),
-            FOREIGN KEY (body_part_id) REFERENCES body_part(id),
+            FOREIGN KEY (body_part_id) REFERENCES body_part(id)
           )
         ''');
 
