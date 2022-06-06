@@ -1,3 +1,4 @@
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:uuid/uuid.dart';
@@ -12,12 +13,16 @@ class DbHelper {
   static Future<Database?> open() async {
     final databasesPath = await getDatabasesPath();
     final path = join(databasesPath, _dbFile);
-    var uuid = const Uuid();
 
     db = await openDatabase(
       path,
       version: _dbVersion,
       onCreate: (Database db, int version) async {
+        var uuid = const Uuid();
+        var userId =uuid.v4().toString();
+        const storage = FlutterSecureStorage();
+        await storage.write(key: 'userId', value: userId);
+
         await db.execute('''
           CREATE TABLE user (
             id TEXT NOT NULL,
@@ -27,7 +32,7 @@ class DbHelper {
         ''');
 
         await db.execute('''
-          INSERT INTO "user" (id, name) VALUES('${uuid.v4().toString()}', '');
+          INSERT INTO "user" (id, name) VALUES('${userId}', '');
         ''');
 
         await db.execute('''
@@ -50,11 +55,35 @@ class DbHelper {
 
         await db.execute('''
           INSERT INTO body_part (id, name) VALUES('a50a395b-fdf4-e5ae-9751-2866a0c087cf', '首');
+        ''');
+
+
+        await db.execute('''
           INSERT INTO body_part (id, name) VALUES('56ce60f3-a267-cd00-de00-5a69d3c37900', '背中');
+        ''');
+
+
+        await db.execute('''
           INSERT INTO body_part (id, name) VALUES('0e4f2659-724e-c93f-d709-ef4bee18ceb3', '腰');
+        ''');
+
+
+        await db.execute('''
           INSERT INTO body_part (id, name) VALUES('9e593b71-ec5e-89f0-4b82-4b08871ac9f4', '右手');
+        ''');
+
+
+        await db.execute('''
           INSERT INTO body_part (id, name) VALUES('b6075b51-7b8f-9b21-2056-e8938b481b80', '左手');
+        ''');
+
+
+        await db.execute('''
           INSERT INTO body_part (id, name) VALUES('a2cc7c56-c5b9-4280-640f-7fc4b7e7bb02', '右足');
+        ''');
+
+
+        await db.execute('''
           INSERT INTO body_part (id, name) VALUES('2a12d9d5-2970-72fa-3bb5-087d64432ad0', '左足');
         ''');
 
