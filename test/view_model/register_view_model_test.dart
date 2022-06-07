@@ -14,8 +14,8 @@ void main() {
   test("一覧取得", () async {
     var uuid = const Uuid();
     var userId = uuid.v4();
-    var entity1 = CrackingCounterEntity(userId, uuid.v4(), 10, 1);
-    var entity2 = CrackingCounterEntity(userId, uuid.v4(), 15, 2);
+    var entity1 = CrackingCounterEntity(userId, uuid.v4(), '首', 10, 1);
+    var entity2 = CrackingCounterEntity(userId, uuid.v4(), '腰', 15, 2);
     var crackingList = [entity1, entity2];
     when(service.getCrackingCounters()).thenAnswer((_) async => crackingList);
 

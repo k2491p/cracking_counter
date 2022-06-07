@@ -16,8 +16,8 @@ void main() {
     var uuid = const Uuid();
     var userId = uuid.v4();
     Shared.userId = userId;
-    var entity1 = CrackingCounterEntity(userId, uuid.v4(), 10, 1);
-    var entity2 = CrackingCounterEntity(userId, uuid.v4(), 15, 2);
+    var entity1 = CrackingCounterEntity(userId, uuid.v4(), '首', 10, 1);
+    var entity2 = CrackingCounterEntity(userId, uuid.v4(), '腰', 15, 2);
     var crackingCounters = CrackingCounters([entity1, entity2]);
     when(repository.getAll(userId)).thenAnswer((_) async => [entity1, entity2]);
 

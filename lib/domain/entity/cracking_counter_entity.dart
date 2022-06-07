@@ -5,10 +5,11 @@ import '../value_object/count.dart';
 class CrackingCounterEntity {
   String userId;
   String bodyPartId;
+  String bodyPartName;
   late Count totalCount;
   late Count todayCount;
   CrackingCounterEntity(
-      this.userId, this.bodyPartId, int totalCount, int todayCount) {
+      this.userId, this.bodyPartId, this.bodyPartName, int totalCount, int todayCount) {
     this.totalCount = Count(totalCount);
     this.todayCount = Count(todayCount);
   }
