@@ -18,15 +18,13 @@ class Register extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vm = ref.watch(registerViewModelProvider.notifier);
-    final state = ref.watch(registerViewModelProvider);
-    // final snapshot = useFuture(useMemoized(
-    //         () => vm.updateList()));
+    final vm = ref.watch(registerViewModelProvider);
     useEffect(() {
       Future(() {
         vm.updateList();
       });
     }, const []);
+    // vm.updateList();
     return Scaffold(
       appBar: AppBar(
         title: Text(title),

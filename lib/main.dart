@@ -6,12 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
-void main() {
-  initialize();
+Future<void> main() async {
+  await initialize();
   runApp(const ProviderScope(child: MyApp()));
 }
 
 Future<void> initialize() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await DbHelper.open();
   const storage = FlutterSecureStorage();
   Shared.userId = await storage.read(key: 'userId');
 }
