@@ -41,15 +41,18 @@ class Register extends HookConsumerWidget {
           itemBuilder: (BuildContext context, int index) {
             return Row(
               children: [
-                Text('首', style: TextStyle(
-                    fontSize: 24.0, fontWeight: FontWeight.bold)),
+                SizedBox(
+                  width: 72,
+                  child: Text(vm.crackingList[index].bodyPartName, style: TextStyle(
+                      fontSize: 24.0, fontWeight: FontWeight.bold)),
+                ),
                 const SizedBox(width: 48),
                 Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text('通算'),
-                      Text('10'),
+                      Text(vm.crackingList[index].totalCount.stringValue),
                     ]
                 ),
                 const SizedBox(width: 24),
@@ -59,7 +62,7 @@ class Register extends HookConsumerWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text('今日'),
-                        Text('3'),
+                        Text(vm.crackingList[index].todayCount.stringValue),
                       ]
                   ),
                 ),
