@@ -7,6 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:uuid/uuid.dart';
+import '../data/data.dart';
 import 'cracking_counter_service_test.mocks.dart';
 
 @GenerateMocks([ICrackingCounterRepository])
@@ -16,14 +17,17 @@ void main() {
     var uuid = const Uuid();
     var userId = uuid.v4();
     Shared.userId = userId;
-    var entity1 = CrackingCounterEntity(userId, uuid.v4(), '首', 10, 1, uuid.v4());
-    var entity2 = CrackingCounterEntity(userId, uuid.v4(), '腰', 15, 2, uuid.v4());
-    var crackingCounters = CrackingCounters([entity1, entity2]);
-    when(repository.getAll(userId)).thenAnswer((_) async => [entity1, entity2]);
+    var list = Data.GetCrackingCounterList(userId);
+    var crackingCounters = CrackingCounters(list);
+    when(repository.getAll(userId)).thenAnswer((_) async => list);
 
     var service = CrackingCounterService.repository(repository);
     var result = await service.getCrackingCounters();
 
     expect(result, crackingCounters.value);
+    var parentList = result.where((element) => element.children.length > 0).toList();
+    expect(parentList.length, 1);
+    expect(parentList[0].children.length, 5);
   });
 }
+
