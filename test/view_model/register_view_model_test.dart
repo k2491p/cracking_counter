@@ -14,8 +14,8 @@ void main() {
   test("一覧取得", () async {
     var uuid = const Uuid();
     var userId = uuid.v4();
-    var entity1 = CrackingCounterEntity(userId, uuid.v4(), '首', 10, 1);
-    var entity2 = CrackingCounterEntity(userId, uuid.v4(), '腰', 15, 2);
+    var entity1 = CrackingCounterEntity(userId, uuid.v4(), '首', 10, 1, uuid.v4());
+    var entity2 = CrackingCounterEntity(userId, uuid.v4(), '腰', 15, 2, uuid.v4());
     var crackingList = [entity1, entity2];
     when(service.getCrackingCounters()).thenAnswer((_) async => crackingList);
 
@@ -23,5 +23,7 @@ void main() {
     await vm.updateList();
 
     expect(vm.crackingList, crackingList);
+    expect(vm.crackingList[0].bodyPartName, '首');
+    expect(vm.crackingList[1].bodyPartName, '腰');
   });
 }
