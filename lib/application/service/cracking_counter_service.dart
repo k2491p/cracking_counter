@@ -10,7 +10,20 @@ class CrackingCounterService {
   CrackingCounterService.repository(this._repository);
 
   Future<List<CrackingCounterEntity>> getCrackingCounters() async {
-    List<CrackingCounterEntity> result = await _repository.getAll(Shared.userId ?? '');
+    List<CrackingCounterEntity> crackingCounterEntityList = await _repository.getAll(Shared.userId ?? '');
+    var result = setChildren(crackingCounterEntityList);
+    return result;
+  }
+
+  List<CrackingCounterEntity> setChildren(List<CrackingCounterEntity> list) {
+    List<CrackingCounterEntity> result = list.where((element) => element.parentId == null).toList();
+    var childrenList = list.where((element) => element.parentId != null).map((e) => e.parentId).toList();
+    for (var parentId in childrenList) {
+      var children = list.where((element) => element.parentId == parentId).toList();
+      for (var element in result) {
+        if (element.bodyPartId == parentId) element.children = children;
+      }
+    }
     return result;
   }
 }

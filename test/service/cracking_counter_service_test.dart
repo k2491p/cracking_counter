@@ -25,9 +25,20 @@ void main() {
     var result = await service.getCrackingCounters();
 
     expect(result, crackingCounters.value);
-    var parentList = result.where((element) => element.children.length > 0).toList();
-    expect(parentList.length, 1);
-    expect(parentList[0].children.length, 5);
+  });
+
+  test("子要素設定", () async {
+    var uuid = const Uuid();
+    var userId = uuid.v4();
+    Shared.userId = userId;
+    var list = Data.GetCrackingCounterList(userId);
+    var service = CrackingCounterService();
+    var result = service.setChildren(list);
+
+    expect(result.length, 3);
+    expect(result[0].children.length, 0);
+    expect(result[1].children.length, 0);
+    expect(result[2].children.length, 5);
   });
 }
 
