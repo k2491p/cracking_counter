@@ -1,3 +1,4 @@
+import 'package:cracking_counter/domain/entity/cracking_counter_entity.dart';
 import 'package:cracking_counter/presentation/component/footer.dart';
 import 'package:cracking_counter/presentation/view_model/register_view_model.dart';
 import 'package:flutter/material.dart';
@@ -39,46 +40,23 @@ class Register extends HookConsumerWidget {
         ListView.builder(
           itemCount: vm.crackingList.length,
           itemBuilder: (BuildContext context, int index) {
-            return Row(
-              children: [
-                SizedBox(
-                  width: 72,
-                  child: Text(vm.crackingList[index].bodyPartName, style: TextStyle(
-                      fontSize: 24.0, fontWeight: FontWeight.bold)),
-                ),
-                const SizedBox(width: 48),
-                Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text('通算'),
-                      Text(vm.crackingList[index].totalCount.stringValue),
-                    ]
-                ),
-                const SizedBox(width: 24),
-                Expanded(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text('今日'),
-                        Text(vm.crackingList[index].todayCount.stringValue),
-                      ]
-                  ),
-                ),
-                ElevatedButton(
-                  child: const Text('ポキッ'),
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.blue,
-                    onPrimary: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  onPressed: () {},
-                ),
-              ],
-            );
+            var target = vm.crackingList[index];
+            if (target.children.isEmpty) {
+              return BodyPartCard(target: target);
+            } else {
+              return ExpansionTile(title: Text(target.bodyPartName),
+                children: [
+                  ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: target.children.length,
+                    itemBuilder: (BuildContext contextChild, int indexChild) {
+                      var children = target.children[indexChild];
+                      return BodyPartCard(target: children);
+                    }
+                  )
+                ],
+              );
+            }
           }
         ),
       ),
@@ -92,4 +70,58 @@ class Register extends HookConsumerWidget {
   }
 
   void setState(Null Function() param0) {}
+}
+
+class BodyPartCard extends StatelessWidget {
+  const BodyPartCard({
+    Key? key,
+    required this.target,
+  }) : super(key: key);
+
+  final CrackingCounterEntity target;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        SizedBox(
+          width: 72,
+          child: Text(
+              target.bodyPartName, style: TextStyle(
+              fontSize: 24.0, fontWeight: FontWeight.bold)),
+        ),
+        const SizedBox(width: 48),
+        Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text('通算'),
+              Text(target.totalCount.stringValue),
+            ]
+        ),
+        const SizedBox(width: 24),
+        Expanded(
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text('今日'),
+                Text(target.todayCount.stringValue),
+              ]
+          ),
+        ),
+        ElevatedButton(
+          child: const Text('ポキッ'),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.blue,
+            onPrimary: Colors.black,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          onPressed: () {},
+        ),
+      ],
+    );
+  }
 }
