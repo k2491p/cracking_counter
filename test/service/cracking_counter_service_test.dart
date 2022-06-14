@@ -13,32 +13,35 @@ import 'cracking_counter_service_test.mocks.dart';
 @GenerateMocks([ICrackingCounterRepository])
 void main() {
   final repository = MockICrackingCounterRepository();
-  test("一覧取得", () async {
+  String userId = "";
+  setUp(() {
     var uuid = const Uuid();
-    var userId = uuid.v4();
+    userId = uuid.v4();
     Shared.userId = userId;
-    var list = Data.GetCrackingCounterList(userId);
-    var crackingCounters = CrackingCounters(list);
-    when(repository.getAll(userId)).thenAnswer((_) async => list);
-
-    var service = CrackingCounterService.repository(repository);
-    var result = await service.getCrackingCounters();
-
-    expect(result, crackingCounters.value);
   });
+  group('GET', ()
+  {
+    test("一覧取得", () async {
+      var list = Data.GetCrackingCounterList(userId);
+      var crackingCounters = CrackingCounters(list);
+      when(repository.getAll(userId)).thenAnswer((_) async => list);
 
-  test("子要素設定", () async {
-    var uuid = const Uuid();
-    var userId = uuid.v4();
-    Shared.userId = userId;
-    var list = Data.GetCrackingCounterList(userId);
-    var service = CrackingCounterService();
-    var result = service.setChildren(list);
+      var service = CrackingCounterService.repository(repository);
+      var result = await service.getCrackingCounters();
 
-    expect(result.length, 3);
-    expect(result[0].children.length, 0);
-    expect(result[1].children.length, 0);
-    expect(result[2].children.length, 5);
+      expect(result, crackingCounters.value);
+    });
+
+    test("子要素設定", () async {
+      var list = Data.GetCrackingCounterList(userId);
+      var service = CrackingCounterService();
+      var result = service.setChildren(list);
+
+      expect(result.length, 3);
+      expect(result[0].children.length, 0);
+      expect(result[1].children.length, 0);
+      expect(result[2].children.length, 5);
+    });
   });
 }
 
