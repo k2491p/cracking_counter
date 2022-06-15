@@ -17,13 +17,16 @@ void main() {
     userId = uuid.v4();
     Shared.userId = userId;
   });
-  test("一覧取得", () async {
-    var crackingList = Data.GetCrackingCounterList(userId);
-    when(service.getCrackingCounters()).thenAnswer((_) async => crackingList);
+  group('GET', ()
+  {
+    test("一覧取得", () async {
+      var crackingList = Data.GetCrackingCounterList(userId);
+      when(service.getCrackingCounters()).thenAnswer((_) async => crackingList);
 
-    var vm = RegisterViewModel.service(service);
-    await vm.updateList();
+      var vm = RegisterViewModel.service(service);
+      await vm.updateList();
 
-    expect(vm.crackingList, crackingList);
+      expect(vm.crackingList, crackingList);
+    });
   });
 }
