@@ -29,7 +29,7 @@ void main() {
       var service = CrackingCounterService.repository(repository);
       var result = await service.getCrackingCounters();
 
-      expect(result, crackingCounters.value);
+      expect(result, service.setChildren(crackingCounters.value));
     });
 
     test("子要素設定", () async {
