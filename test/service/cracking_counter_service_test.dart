@@ -43,5 +43,21 @@ void main() {
       expect(result[2].children.length, 5);
     });
   });
+
+  group('INSERT', (){
+    test("骨ポキ登録", () async {
+      var list = Data.GetCrackingCounterList(userId);
+
+      var service = CrackingCounterService.repository(repository);
+      var success = true;
+      try {
+        service.register(list[0].bodyPartId);
+      }
+      catch (ex) {
+        success = false;
+      }
+      expect(success, true);
+    });
+  });
 }
 

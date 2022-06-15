@@ -26,4 +26,7 @@ class CrackingCounterService {
     }
     return result;
   }
+
+  void register(String bodyPartId) {throw Exception("未実装");}
+
 }
