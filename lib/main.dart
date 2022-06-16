@@ -15,7 +15,7 @@ Future<void> initialize() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DbHelper.open();
   const storage = FlutterSecureStorage();
-  Shared.userId = await storage.read(key: 'userId');
+  Shared.userId = (await storage.read(key: 'userId'))!;
 }
 
 

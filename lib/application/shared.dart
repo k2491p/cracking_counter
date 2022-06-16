@@ -1,3 +1,3 @@
 class Shared {
-  static String? userId;
+  static String userId = "";
 }
