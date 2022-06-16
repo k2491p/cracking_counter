@@ -20,6 +20,8 @@ class RegisterViewModel extends ChangeNotifier {
     _crackingList = await _service.getCrackingCounters();
     notifyListeners();
   }
+
+  void register(String bodyPartId) {throw Exception("未実装");}
 }
 
 final registerViewModelProvider = ChangeNotifierProvider((ref) => RegisterViewModel());

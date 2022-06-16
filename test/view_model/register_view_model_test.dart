@@ -29,4 +29,20 @@ void main() {
       expect(vm.crackingList, crackingList);
     });
   });
+
+  group('INSERT', (){
+    test("骨ポキ登録", () async {
+      var list = Data.GetCrackingCounterList(userId);
+
+      var vm = RegisterViewModel();
+      var success = true;
+      try {
+        vm.register(list[0].bodyPartId);
+      }
+      catch (ex) {
+        success = false;
+      }
+      expect(success, true);
+    });
+  });
 }
