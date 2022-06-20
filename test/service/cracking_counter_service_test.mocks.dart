@@ -35,4 +35,8 @@ class MockICrackingCounterRepository extends _i1.Mock
               returnValue: Future<List<_i4.CrackingCounterEntity>>.value(
                   <_i4.CrackingCounterEntity>[]))
           as _i3.Future<List<_i4.CrackingCounterEntity>>);
+  @override
+  void register(Map<String, String>? crackingHistoryMap) =>
+      super.noSuchMethod(Invocation.method(#register, [crackingHistoryMap]),
+          returnValueForMissingStub: null);
 }

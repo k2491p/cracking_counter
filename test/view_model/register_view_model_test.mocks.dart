@@ -35,4 +35,14 @@ class MockCrackingCounterService extends _i1.Mock
               returnValue: Future<List<_i4.CrackingCounterEntity>>.value(
                   <_i4.CrackingCounterEntity>[]))
           as _i3.Future<List<_i4.CrackingCounterEntity>>);
+  @override
+  List<_i4.CrackingCounterEntity> setChildren(
+          List<_i4.CrackingCounterEntity>? list) =>
+      (super.noSuchMethod(Invocation.method(#setChildren, [list]),
+              returnValue: <_i4.CrackingCounterEntity>[])
+          as List<_i4.CrackingCounterEntity>);
+  @override
+  void register(String? bodyPartId) =>
+      super.noSuchMethod(Invocation.method(#register, [bodyPartId]),
+          returnValueForMissingStub: null);
 }
