@@ -33,8 +33,9 @@ void main() {
   group('INSERT', (){
     test("骨ポキ登録", () async {
       var list = Data.GetCrackingCounterList(userId);
-
-      var vm = RegisterViewModel();
+      when(service.getCrackingCounters()).thenAnswer((_) async => list);
+      when(service.register(any)).thenAnswer((_) async => null);
+      var vm = RegisterViewModel.service(service);
       var success = true;
       try {
         vm.register(list[0].bodyPartId);

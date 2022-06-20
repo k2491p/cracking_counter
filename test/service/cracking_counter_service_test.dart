@@ -3,6 +3,7 @@ import 'package:cracking_counter/application/service/cracking_counter_service.da
 import 'package:cracking_counter/application/shared.dart';
 import 'package:cracking_counter/domain/entity/cracking_counter_entity.dart';
 import 'package:cracking_counter/domain/repository/i_cracking_counter_repository.dart';
+import 'package:cracking_counter/infrastructure/sqlite/cracking_counter_sqlite.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
@@ -47,7 +48,7 @@ void main() {
   group('INSERT', (){
     test("骨ポキ登録", () async {
       var list = Data.GetCrackingCounterList(userId);
-
+      when(repository.register(any)).thenAnswer((_) async => null);
       var service = CrackingCounterService.repository(repository);
       var success = true;
       try {

@@ -13,16 +13,8 @@ class CrackingCounterSqlite implements ICrackingCounterRepository {
   }
 
   @override
-  Future<void> register(String userId, String bodyPartId) async {
-    var uuid = const Uuid();
-    Map<String, String> map = {
-      'id' : uuid.v4(),
-      'user_id' : userId,
-      'body_part_id' : bodyPartId,
-      'count' : "1",
-      'register_date' : DateTime.now().toString()
-    };
-    await DbHelper.db!.insert('cracking_history', map);
+  Future<void> register(Map<String, String> crackingHistoryMap) async {
+    await DbHelper.db!.insert('cracking_history', crackingHistoryMap);
   }
   
 }

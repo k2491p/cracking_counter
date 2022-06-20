@@ -3,6 +3,7 @@ import 'package:cracking_counter/application/shared.dart';
 import 'package:cracking_counter/domain/entity/cracking_counter_entity.dart';
 import 'package:cracking_counter/domain/repository/i_cracking_counter_repository.dart';
 import 'package:cracking_counter/infrastructure/sqlite/cracking_counter_sqlite.dart';
+import 'package:uuid/uuid.dart';
 
 class CrackingCounterService {
   late ICrackingCounterRepository _repository;
@@ -27,6 +28,16 @@ class CrackingCounterService {
     return result;
   }
 
-  void register(String bodyPartId) {throw Exception("未実装");}
+  void register(String bodyPartId) {
+    var uuid = const Uuid();
+    Map<String, String> crackingHistoryMap = {
+      'id' : uuid.v4(),
+      'user_id' : Shared.userId,
+      'body_part_id' : bodyPartId,
+      'count' : "1",
+      'register_date' : DateTime.now().toString()
+    };
+    _repository.register(crackingHistoryMap);
+  }
 
 }

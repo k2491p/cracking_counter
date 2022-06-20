@@ -21,7 +21,9 @@ class RegisterViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void register(String bodyPartId) {throw Exception("未実装");}
+  void register(String bodyPartId) {
+    _service.register(bodyPartId);
+  }
 }
 
 final registerViewModelProvider = ChangeNotifierProvider((ref) => RegisterViewModel());
