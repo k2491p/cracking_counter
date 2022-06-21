@@ -42,7 +42,7 @@ class Register extends HookConsumerWidget {
           itemBuilder: (BuildContext context, int index) {
             var target = vm.crackingList[index];
             if (target.children.isEmpty) {
-              return BodyPartCard(target: target);
+              return BodyPartCard(target: target, vm: vm);
             } else {
               return ExpansionTile(title: Text(target.bodyPartName),
                 children: [
@@ -51,7 +51,7 @@ class Register extends HookConsumerWidget {
                     itemCount: target.children.length,
                     itemBuilder: (BuildContext contextChild, int indexChild) {
                       var children = target.children[indexChild];
-                      return BodyPartCard(target: children);
+                      return BodyPartCard(target: children, vm: vm);
                     }
                   )
                 ],
@@ -76,9 +76,11 @@ class BodyPartCard extends StatelessWidget {
   const BodyPartCard({
     Key? key,
     required this.target,
+    required this.vm,
   }) : super(key: key);
 
   final CrackingCounterEntity target;
+  final RegisterViewModel vm;
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +121,10 @@ class BodyPartCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
           ),
-          onPressed: () {},
+          onPressed: () async {
+            vm.register(target.bodyPartId);
+            await vm.updateList();
+          },
         ),
       ],
     );
