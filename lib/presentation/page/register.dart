@@ -9,13 +9,6 @@ class Register extends HookConsumerWidget {
   Register({Key? key, required this.title}) : super(key: key);
 
   final String title;
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,18 +18,13 @@ class Register extends HookConsumerWidget {
         vm.updateList();
       });
     }, const []);
-    // vm.updateList();
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
       ),
       body: Container(
         margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 48.0),
-        // height: 60,
         child:
-        // state.isLoading
-        //   ? null
-        // :
         ListView.builder(
           itemCount: vm.crackingList.length,
           itemBuilder: (BuildContext context, int index) {
@@ -61,15 +49,9 @@ class Register extends HookConsumerWidget {
         ),
       ),
       bottomNavigationBar: Footer(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => vm.updateList(),
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 
-  void setState(Null Function() param0) {}
 }
 
 class BodyPartCard extends StatelessWidget {
