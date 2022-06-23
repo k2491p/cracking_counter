@@ -23,23 +23,35 @@ class Register extends HookConsumerWidget {
         title: Text(title),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 48.0),
+        margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
         child:
         ListView.builder(
           itemCount: vm.crackingList.length,
           itemBuilder: (BuildContext context, int index) {
             var target = vm.crackingList[index];
             if (target.children.isEmpty) {
-              return BodyPartCard(target: target, vm: vm);
+              return Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: BodyPartCard(target: target, vm: vm),
+              );
             } else {
-              return ExpansionTile(title: Text(target.bodyPartName),
+              return ExpansionTile(
+                title: Text(target.bodyPartName, style: TextStyle(
+                    fontSize: 24.0, fontWeight: FontWeight.bold)
+                ),
                 children: [
                   ListView.builder(
                     shrinkWrap: true,
                     itemCount: target.children.length,
                     itemBuilder: (BuildContext contextChild, int indexChild) {
                       var children = target.children[indexChild];
-                      return BodyPartCard(target: children, vm: vm);
+                      return Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 12.0),
+                          child: BodyPartCard(target: children, vm: vm),
+                        ),
+                      );
                     }
                   )
                 ],
@@ -68,11 +80,13 @@ class BodyPartCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        SizedBox(
-          width: 72,
-          child: Text(
-              target.bodyPartName, style: TextStyle(
-              fontSize: 24.0, fontWeight: FontWeight.bold)),
+        Expanded(
+          child: SizedBox(
+            width: 72,
+            child: Text(
+                target.bodyPartName, style: TextStyle(
+                fontSize: 24.0, fontWeight: FontWeight.bold)),
+          ),
         ),
         const SizedBox(width: 48),
         Column(
