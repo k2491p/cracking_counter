@@ -3,6 +3,7 @@ import 'package:cracking_counter/presentation/component/footer.dart';
 import 'package:cracking_counter/presentation/view_model/register_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class Register extends HookConsumerWidget {
@@ -23,7 +24,7 @@ class Register extends HookConsumerWidget {
         title: Text(title),
       ),
       body: Container(
-        margin: EdgeInsets.symmetric(vertical: 16.0, horizontal: 24.0),
+        margin: EdgeInsets.symmetric(vertical: 16.0.h, horizontal: 24.0.w),
         child:
         ListView.builder(
           itemCount: vm.crackingList.length,
@@ -31,14 +32,15 @@ class Register extends HookConsumerWidget {
             var target = vm.crackingList[index];
             if (target.children.isEmpty) {
               return Padding(
-                padding: const EdgeInsets.all(4.0),
+                padding: EdgeInsets.symmetric(vertical: 4.0.h, horizontal: 6.0.w),
                 child: BodyPartCard(target: target, vm: vm),
               );
             } else {
               return ExpansionTile(
                 title: Text(target.bodyPartName, style: TextStyle(
-                    fontSize: 24.0, fontWeight: FontWeight.bold)
+                    fontSize: 24.0.sp, fontWeight: FontWeight.bold)
                 ),
+                tilePadding: EdgeInsets.symmetric(vertical: 4.0.h, horizontal: 6.0.w),
                 children: [
                   ListView.builder(
                     shrinkWrap: true,
@@ -46,7 +48,7 @@ class Register extends HookConsumerWidget {
                     itemBuilder: (BuildContext contextChild, int indexChild) {
                       var children = target.children[indexChild];
                       return Padding(
-                        padding: const EdgeInsets.all(4.0),
+                        padding: EdgeInsets.symmetric(vertical: 4.0.h, horizontal: 8.0.w),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 12.0),
                           child: BodyPartCard(target: children, vm: vm),
@@ -82,29 +84,29 @@ class BodyPartCard extends StatelessWidget {
       children: [
         Expanded(
           child: SizedBox(
-            width: 72,
+            width: 72.w,
             child: Text(
                 target.bodyPartName, style: TextStyle(
-                fontSize: 24.0, fontWeight: FontWeight.bold)),
+                fontSize: 24.0.sp, fontWeight: FontWeight.bold)),
           ),
         ),
-        const SizedBox(width: 48),
+        48.horizontalSpace,
         Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text('通算'),
-              Text(target.totalCount.stringValue),
+              Text('通算', style: TextStyle(fontSize: 16.0.sp)),
+              Text(target.totalCount.stringValue, style: TextStyle(fontSize: 16.0.sp)),
             ]
         ),
-        const SizedBox(width: 24),
+        24.horizontalSpace,
         Expanded(
           child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text('今日'),
-                Text(target.todayCount.stringValue),
+                Text('今日', style: TextStyle(fontSize: 16.0.sp)),
+                Text(target.todayCount.stringValue, style: TextStyle(fontSize: 16.0.sp)),
               ]
           ),
         ),
