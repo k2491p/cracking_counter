@@ -33,12 +33,21 @@ class Register extends HookConsumerWidget {
             if (target.children.isEmpty) {
               return Padding(
                 padding: EdgeInsets.symmetric(vertical: 4.0.h, horizontal: 6.0.w),
-                child: BodyPartCard(target: target, vm: vm),
+                child: Column(
+                  children: [
+                    if (index != 0) Divider(color: Colors.grey, thickness: 1.0, height: 1.0.h),
+                    BodyPartCard(target: target, vm: vm, isChildren: false,),
+                  ],
+                )
               );
             } else {
               return ExpansionTile(
-                title: Text(target.bodyPartName, style: TextStyle(
-                    fontSize: 24.0.sp, fontWeight: FontWeight.bold)
+                title: Text(target.bodyPartName,
+                    style: TextStyle(
+                      fontSize: 20.0.sp,
+                        fontWeight: FontWeight.bold)
+                    ,
+
                 ),
                 tilePadding: EdgeInsets.symmetric(vertical: 4.0.h, horizontal: 6.0.w),
                 children: [
@@ -48,10 +57,15 @@ class Register extends HookConsumerWidget {
                     itemBuilder: (BuildContext contextChild, int indexChild) {
                       var children = target.children[indexChild];
                       return Padding(
-                        padding: EdgeInsets.symmetric(vertical: 4.0.h, horizontal: 8.0.w),
+                        padding: EdgeInsets.symmetric(vertical: 2.0.h, horizontal: 6.0.w),
                         child: Padding(
                           padding: const EdgeInsets.only(left: 12.0),
-                          child: BodyPartCard(target: children, vm: vm),
+                          child: Column(
+                            children: [
+                              Divider(color: Colors.grey, thickness: 1.0, height: 1.0.h),
+                              BodyPartCard(target: children, vm: vm, isChildren: true,),
+                            ],
+                          ),
                         ),
                       );
                     }
@@ -72,23 +86,22 @@ class BodyPartCard extends StatelessWidget {
   const BodyPartCard({
     Key? key,
     required this.target,
-    required this.vm,
+    required this.vm, required this.isChildren,
   }) : super(key: key);
 
   final CrackingCounterEntity target;
   final RegisterViewModel vm;
+  final bool isChildren;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(
-          child: SizedBox(
-            width: 72.w,
-            child: Text(
-                target.bodyPartName, style: TextStyle(
-                fontSize: 24.0.sp, fontWeight: FontWeight.bold)),
-          ),
+        SizedBox(
+          width: isChildren ? 60.w : 72.w,
+          child: Text(
+              target.bodyPartName, style: TextStyle(
+              fontSize: 20.0.sp, fontWeight: FontWeight.bold)),
         ),
         48.horizontalSpace,
         Column(
