@@ -35,7 +35,7 @@ class Register extends HookConsumerWidget {
                 padding: EdgeInsets.symmetric(vertical: 4.0.h, horizontal: 6.0.w),
                 child: Column(
                   children: [
-                    if (index != 0) Divider(color: Colors.grey, thickness: 1.0, height: 1.0.h),
+                    if (index != 0) const ListDivider(),
                     BodyPartCard(target: target, vm: vm, isChildren: false,),
                   ],
                 )
@@ -62,7 +62,7 @@ class Register extends HookConsumerWidget {
                           padding: const EdgeInsets.only(left: 12.0),
                           child: Column(
                             children: [
-                              Divider(color: Colors.grey, thickness: 1.0, height: 1.0.h),
+                              const ListDivider(),
                               BodyPartCard(target: children, vm: vm, isChildren: true,),
                             ],
                           ),
@@ -139,5 +139,16 @@ class BodyPartCard extends StatelessWidget {
         ),
       ],
     );
+  }
+}
+
+class ListDivider extends StatelessWidget {
+  const ListDivider({
+  Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Divider(color: Colors.grey, thickness: 1.0, height: 1.0.h);
   }
 }
