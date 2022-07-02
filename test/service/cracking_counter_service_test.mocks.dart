@@ -6,6 +6,8 @@ import 'dart:async' as _i3;
 
 import 'package:cracking_counter/domain/entity/cracking_counter_entity.dart'
     as _i4;
+import 'package:cracking_counter/domain/entity/cracking_history_entity.dart'
+    as _i5;
 import 'package:cracking_counter/domain/repository/i_cracking_counter_repository.dart'
     as _i2;
 import 'package:mockito/mockito.dart' as _i1;
@@ -36,7 +38,7 @@ class MockICrackingCounterRepository extends _i1.Mock
                   <_i4.CrackingCounterEntity>[]))
           as _i3.Future<List<_i4.CrackingCounterEntity>>);
   @override
-  void register(Map<String, String>? crackingHistoryMap) =>
+  void register(_i5.CrackingHistoryEntity? crackingHistoryMap) =>
       super.noSuchMethod(Invocation.method(#register, [crackingHistoryMap]),
           returnValueForMissingStub: null);
 }

@@ -1,4 +1,5 @@
 import 'package:cracking_counter/domain/entity/cracking_counter_entity.dart';
+import 'package:cracking_counter/domain/entity/cracking_history_entity.dart';
 import 'package:cracking_counter/domain/repository/i_cracking_counter_repository.dart';
 import 'package:cracking_counter/infrastructure/sqlite/db_helper.dart';
 import 'package:uuid/uuid.dart';
@@ -13,8 +14,8 @@ class CrackingCounterSqlite implements ICrackingCounterRepository {
   }
 
   @override
-  Future<void> register(Map<String, String> crackingHistoryMap) async {
-    await DbHelper.db!.insert('cracking_history', crackingHistoryMap);
+  Future<void> register(CrackingHistoryEntity entity) async {
+    await DbHelper.db!.insert('cracking_history', entity.map);
   }
   
 }
