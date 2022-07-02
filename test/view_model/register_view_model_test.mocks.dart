@@ -8,6 +8,7 @@ import 'package:cracking_counter/application/service/cracking_counter_service.da
     as _i2;
 import 'package:cracking_counter/domain/entity/cracking_counter_entity.dart'
     as _i4;
+import 'package:cracking_counter/domain/value_object/body_part_id.dart' as _i5;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -42,7 +43,7 @@ class MockCrackingCounterService extends _i1.Mock
               returnValue: <_i4.CrackingCounterEntity>[])
           as List<_i4.CrackingCounterEntity>);
   @override
-  void register(String? bodyPartId) =>
+  void register(_i5.BodyPartId? bodyPartId) =>
       super.noSuchMethod(Invocation.method(#register, [bodyPartId]),
           returnValueForMissingStub: null);
 }

@@ -3,6 +3,7 @@ import 'package:cracking_counter/application/shared.dart';
 import 'package:cracking_counter/domain/entity/cracking_counter_entity.dart';
 import 'package:cracking_counter/domain/entity/cracking_history_entity.dart';
 import 'package:cracking_counter/domain/repository/i_cracking_counter_repository.dart';
+import 'package:cracking_counter/domain/value_object/body_part_id.dart';
 import 'package:cracking_counter/infrastructure/sqlite/cracking_counter_sqlite.dart';
 import 'package:uuid/uuid.dart';
 
@@ -29,7 +30,7 @@ class CrackingCounterService {
     return result;
   }
 
-  void register(String bodyPartId) {
+  void register(BodyPartId bodyPartId) {
     var entity = CrackingHistoryEntity(bodyPartId);
     _repository.register(entity);
   }
