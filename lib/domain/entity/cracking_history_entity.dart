@@ -1,4 +1,5 @@
 import 'package:cracking_counter/application/shared.dart';
+import 'package:cracking_counter/domain/helper/uuid_helper.dart';
 import 'package:cracking_counter/domain/value_object/body_part_id.dart';
 import 'package:uuid/uuid.dart';
 
@@ -7,9 +8,8 @@ class CrackingHistoryEntity {
 
   CrackingHistoryEntity(BodyPartId bodyPartId) {
 
-      var uuid = const Uuid();
       map = {
-        'id' : uuid.v4(),
+        'id' : UuidHelper.newUuid(),
         'user_id' : Shared.userId,
         'body_part_id' : bodyPartId.value,
         'count' : "1",

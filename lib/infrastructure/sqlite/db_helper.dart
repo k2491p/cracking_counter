@@ -1,3 +1,4 @@
+import 'package:cracking_counter/domain/helper/uuid_helper.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -18,8 +19,7 @@ class DbHelper {
       path,
       version: _dbVersion,
       onCreate: (Database db, int version) async {
-        var uuid = const Uuid();
-        var userId =uuid.v4().toString();
+        var userId = UuidHelper.newUuid();
         const storage = FlutterSecureStorage();
         await storage.write(key: 'userId', value: userId);
         var rightHand = '9e593b71-ec5e-89f0-4b82-4b08871ac9f4';
@@ -152,8 +152,8 @@ class DbHelper {
 
         await db.execute('''
           INSERT INTO body_part_tree (id, ancestor_body_part_id, descendent_body_part_id) 
-          VALUES ('${uuid.v4().toString()}', '$rightHand', '$rightThumb'), ('${uuid.v4().toString()}', '$rightHand', '$rightIndex'), ('${uuid.v4().toString()}', '$rightHand', '$rightMiddle'), ('${uuid.v4().toString()}', '$rightHand', '$rightRing'), ('${uuid.v4().toString()}', '$rightHand', '$rightLittle'),
-          ('${uuid.v4().toString()}', '$leftHand', '$leftThumb'), ('${uuid.v4().toString()}', '$leftHand', '$leftIndex'), ('${uuid.v4().toString()}', '$leftHand', '$leftMiddle'), ('${uuid.v4().toString()}', '$leftHand', '$leftRing'), ('${uuid.v4().toString()}', '$leftHand', '$leftLittle');
+          VALUES ('${UuidHelper.newUuid()}', '$rightHand', '$rightThumb'), ('${UuidHelper.newUuid()}', '$rightHand', '$rightIndex'), ('${UuidHelper.newUuid()}', '$rightHand', '$rightMiddle'), ('${UuidHelper.newUuid()}', '$rightHand', '$rightRing'), ('${UuidHelper.newUuid()}', '$rightHand', '$rightLittle'),
+          ('${UuidHelper.newUuid()}', '$leftHand', '$leftThumb'), ('${UuidHelper.newUuid()}', '$leftHand', '$leftIndex'), ('${UuidHelper.newUuid()}', '$leftHand', '$leftMiddle'), ('${UuidHelper.newUuid()}', '$leftHand', '$leftRing'), ('${UuidHelper.newUuid()}', '$leftHand', '$leftLittle');
         ''');
 
         await db.execute('''

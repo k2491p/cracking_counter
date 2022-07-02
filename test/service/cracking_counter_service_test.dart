@@ -2,6 +2,7 @@ import 'package:cracking_counter/application/dto/cracking_counters.dart';
 import 'package:cracking_counter/application/service/cracking_counter_service.dart';
 import 'package:cracking_counter/application/shared.dart';
 import 'package:cracking_counter/domain/entity/cracking_counter_entity.dart';
+import 'package:cracking_counter/domain/helper/uuid_helper.dart';
 import 'package:cracking_counter/domain/repository/i_cracking_counter_repository.dart';
 import 'package:cracking_counter/infrastructure/sqlite/cracking_counter_sqlite.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -16,8 +17,7 @@ void main() {
   final repository = MockICrackingCounterRepository();
   String userId = "";
   setUp(() {
-    var uuid = const Uuid();
-    userId = uuid.v4();
+    userId = UuidHelper.newUuid();
     Shared.userId = userId;
   });
   group('GET', ()
