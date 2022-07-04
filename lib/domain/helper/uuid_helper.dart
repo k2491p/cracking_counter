@@ -8,11 +8,11 @@ class UuidHelper {
 
   static bool isUuid(String value) {
     try {
-      Uuid.parse(value);
+      if (Uuid.isValidUUID(fromString: value)) return true;
     }
     catch (e) {
       return false;
     }
-    return true;
+    return false;
   }
 }
