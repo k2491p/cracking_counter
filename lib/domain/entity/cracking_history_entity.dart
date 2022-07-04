@@ -11,7 +11,7 @@ class CrackingHistoryEntity {
       map = {
         'id' : UuidHelper.newUuid(),
         'user_id' : Shared.userId,
-        'body_part_id' : bodyPartId.value,
+        'body_part_id' : bodyPartId.value!,
         'count' : "1",
         'register_date' : DateTime.now().toString()
       };

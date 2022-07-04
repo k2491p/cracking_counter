@@ -8,9 +8,12 @@ class UuidHelper {
 
   static bool isUuid(String value) {
     try {
-      if (Uuid.isValidUUID(fromString: value)) return true;
+      if (Uuid.isValidUUID(fromString: value, fromByteList: null, validationMode: ValidationMode.nonStrict)) {
+        return true;
+      }
     }
     catch (e) {
+      print(e.toString());
       return false;
     }
     return false;
