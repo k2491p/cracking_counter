@@ -1,3 +1,5 @@
+import 'package:cracking_counter/domain/value_object/user_id.dart';
+
 class Shared {
-  static String userId = "";
+  static UserId userId = UserId("");
 }

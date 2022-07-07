@@ -13,7 +13,7 @@ class CrackingCounterService {
   CrackingCounterService.repository(this._repository);
 
   Future<List<CrackingCounterEntity>> getCrackingCounters() async {
-    List<CrackingCounterEntity> crackingCounterEntityList = await _repository.getAll(Shared.userId);
+    List<CrackingCounterEntity> crackingCounterEntityList = await _repository.getAll(Shared.userId.value);
     var result = setChildren(crackingCounterEntityList);
     return result;
   }

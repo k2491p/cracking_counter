@@ -1,4 +1,5 @@
 import 'package:cracking_counter/application/shared.dart';
+import 'package:cracking_counter/domain/value_object/user_id.dart';
 import 'package:cracking_counter/infrastructure/sqlite/db_helper.dart';
 import 'package:cracking_counter/presentation/component/footer.dart';
 import 'package:cracking_counter/presentation/page/register.dart';
@@ -16,7 +17,7 @@ Future<void> initialize() async {
   WidgetsFlutterBinding.ensureInitialized();
   await DbHelper.open();
   const storage = FlutterSecureStorage();
-  Shared.userId = (await storage.read(key: 'userId'))!;
+  Shared.userId = UserId((await storage.read(key: 'userId'))!);
 }
 
 

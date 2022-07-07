@@ -1,6 +1,7 @@
 import 'package:cracking_counter/application/service/cracking_counter_service.dart';
 import 'package:cracking_counter/application/shared.dart';
 import 'package:cracking_counter/domain/helper/uuid_helper.dart';
+import 'package:cracking_counter/domain/value_object/user_id.dart';
 import 'package:cracking_counter/presentation/view_model/register_view_model.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
@@ -15,7 +16,7 @@ void main() {
   String userId = "";
   setUp(() {
     userId = UuidHelper.newUuid();
-    Shared.userId = userId;
+    Shared.userId = UserId(userId);
   });
   group('GET', ()
   {
