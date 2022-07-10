@@ -1,4 +1,5 @@
 import 'package:cracking_counter/domain/entity/cracking_counter_entity.dart';
+import 'package:cracking_counter/presentation/component/list_divider.dart';
 import 'package:cracking_counter/presentation/component/footer.dart';
 import 'package:cracking_counter/presentation/view_model/register_view_model.dart';
 import 'package:flutter/material.dart';
@@ -139,16 +140,5 @@ class BodyPartCard extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class ListDivider extends StatelessWidget {
-  const ListDivider({
-  Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Divider(color: Colors.grey, thickness: 1.0, height: 1.0.h);
   }
 }
