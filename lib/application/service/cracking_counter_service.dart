@@ -24,7 +24,7 @@ class CrackingCounterService {
     for (var parentId in childrenList) {
       var children = list.where((element) => element.parentId?.value == parentId).toList();
       for (var element in result) {
-        if (element.bodyPartId?.value == parentId) element.children = children;
+        if (element.bodyPartId.value == parentId) element.children = children;
       }
     }
     return result;
